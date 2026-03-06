@@ -32,7 +32,7 @@ public class PlanoNutricionalFunctions
 
     [Function("GetPlanosNutricionais")]
     public async Task<HttpResponseData> GetPlanos(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "planos-nutricionais")] HttpRequestData req)
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "nutricao")] HttpRequestData req)
     {
         var queryParams = System.Web.HttpUtility.ParseQueryString(req.Url.Query);
         var alunoId = queryParams["alunoId"];
@@ -64,7 +64,7 @@ public class PlanoNutricionalFunctions
 
     [Function("GetPlanoNutricionalById")]
     public async Task<HttpResponseData> GetById(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "planos-nutricionais/{id}")] HttpRequestData req,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "nutricao/{id}")] HttpRequestData req,
         string id)
     {
         var plano = await _repository.GetByIdAsync(id, _tenantContext.TenantId);
@@ -79,7 +79,7 @@ public class PlanoNutricionalFunctions
 
     [Function("CreatePlanoNutricional")]
     public async Task<HttpResponseData> Create(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "planos-nutricionais")] HttpRequestData req)
+        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "nutricao")] HttpRequestData req)
     {
         if (_tenantContext.IsAluno)
             throw new ForbiddenException("Apenas professores podem criar planos nutricionais.");
@@ -98,7 +98,7 @@ public class PlanoNutricionalFunctions
 
     [Function("UpdatePlanoNutricional")]
     public async Task<HttpResponseData> Update(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "put", Route = "planos-nutricionais/{id}")] HttpRequestData req,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "put", Route = "nutricao/{id}")] HttpRequestData req,
         string id)
     {
         if (_tenantContext.IsAluno)
@@ -127,7 +127,7 @@ public class PlanoNutricionalFunctions
 
     [Function("DeletePlanoNutricional")]
     public async Task<HttpResponseData> Delete(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "planos-nutricionais/{id}")] HttpRequestData req,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "nutricao/{id}")] HttpRequestData req,
         string id)
     {
         if (_tenantContext.IsAluno)
