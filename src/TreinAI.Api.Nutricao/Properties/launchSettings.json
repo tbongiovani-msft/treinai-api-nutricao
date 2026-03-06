@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "TreinAI.Api.Nutricao": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7263",
+      "launchBrowser": false
+    }
+  }
+}
